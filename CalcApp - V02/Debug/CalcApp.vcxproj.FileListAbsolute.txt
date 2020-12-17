@@ -1,0 +1,10 @@
+E:\programming language\C++ workspace\Gui\Calculator\CalcApp\Debug\CalcApp.vcxprojAssemblyReference.cache
+E:\programming language\C++ workspace\Gui\Calculator\CalcApp\Debug\CalcApp.Form1.resources
+E:\programming language\C++ workspace\Gui\Calculator\CalcApp\Debug\CalcApp.vcxproj.GenerateResource.cache
+E:\programming language\C++ workspace\Gui\Calculator\CalcApp\Debug\CalcApp.exe
+E:\programming language\C++ workspace\Gui\Calculator\CalcApp\Debug\CalcApp.pdb
+E:\programming language\C++ workspace\Gui\Calculator\CalcApp - V02\Debug\CalcApp.vcxprojAssemblyReference.cache
+E:\programming language\C++ workspace\Gui\Calculator\CalcApp - V02\Debug\CalcApp.Form1.resources
+E:\programming language\C++ workspace\Gui\Calculator\CalcApp - V02\Debug\CalcApp.vcxproj.GenerateResource.cache
+E:\programming language\C++ workspace\Gui\Calculator\CalcApp - V02\Debug\CalcApp.exe
+E:\programming language\C++ workspace\Gui\Calculator\CalcApp - V02\Debug\CalcApp.pdb
