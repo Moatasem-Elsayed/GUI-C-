@@ -1,6 +1,5 @@
 ﻿#pragma once
-#include <iostream>
-#include <cstdlib>
+
 namespace CppCLRWinformsProjekt {
 
 	using namespace System;
@@ -75,11 +74,6 @@ namespace CppCLRWinformsProjekt {
 	private: System::Windows::Forms::Button^ btndiv;
 	private: System::Windows::Forms::Label^ label1;
 	private: System::Windows::Forms::Button^ button1;
-	private: System::Windows::Forms::TextBox^ labelRes;
-
-
-
-
 
 
 
@@ -89,7 +83,7 @@ namespace CppCLRWinformsProjekt {
 		/// <summary>
 		/// Erforderliche Designervariable.
 		/// </summary>
-		System::ComponentModel::Container ^components;
+		System::ComponentModel::Container^ components;
 
 #pragma region Windows Form Designer generated code
 		/// <summary>
@@ -120,14 +114,13 @@ namespace CppCLRWinformsProjekt {
 			this->btndiv = (gcnew System::Windows::Forms::Button());
 			this->label1 = (gcnew System::Windows::Forms::Label());
 			this->button1 = (gcnew System::Windows::Forms::Button());
-			this->labelRes = (gcnew System::Windows::Forms::TextBox());
 			this->SuspendLayout();
 			// 
 			// txtBox
 			// 
 			this->txtBox->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 8.25F, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
-			this->txtBox->Location = System::Drawing::Point(14, 12);
+			this->txtBox->Location = System::Drawing::Point(18, 12);
 			this->txtBox->Multiline = true;
 			this->txtBox->Name = L"txtBox";
 			this->txtBox->RightToLeft = System::Windows::Forms::RightToLeft::Yes;
@@ -420,19 +413,10 @@ namespace CppCLRWinformsProjekt {
 			this->button1->UseVisualStyleBackColor = true;
 			this->button1->Click += gcnew System::EventHandler(this, &Form1::EnterNumber);
 			// 
-			// labelRes
-			// 
-			this->labelRes->Location = System::Drawing::Point(15, 48);
-			this->labelRes->Multiline = true;
-			this->labelRes->Name = L"labelRes";
-			this->labelRes->Size = System::Drawing::Size(308, 31);
-			this->labelRes->TabIndex = 3;
-			// 
 			// Form1
 			// 
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::None;
 			this->ClientSize = System::Drawing::Size(342, 439);
-			this->Controls->Add(this->labelRes);
 			this->Controls->Add(this->label1);
 			this->Controls->Add(this->btndiv);
 			this->Controls->Add(this->btnmult);
@@ -465,158 +449,73 @@ namespace CppCLRWinformsProjekt {
 		}
 #pragma endregion
 
-		double FirstDigit, SecondDigit, Result=0;
-		String^ operators="+";
-		String^ List="0+ ";
-		static bool flag = false;
+		double FirstDigit, SecondDigit, Result;
+		String^ operators;
 	private: System::Void Form1_Load(System::Object^ sender, System::EventArgs^ e) {
 	}
 
-private: System::Void EnterNumber(System::Object^ sender, System::EventArgs^ e) {
-	Button^ Number = safe_cast<Button^>(sender);
-	if (txtBox->Text == "0")
-	{
-		txtBox->Text = Number->Text;
-	}
-	else
-	{
-		txtBox->Text = txtBox->Text + Number->Text;
-	}
-}
-private: System::Void textBox1_TextChanged(System::Object^ sender, System::EventArgs^ e) {
-}
-private: System::Void button17_Click(System::Object^ sender, System::EventArgs^ e) {
-	
-	if (!txtBox->Text->Contains("."))
-	{
-		txtBox->Text = txtBox->Text + ".";
-	}
-}
-	
-private: System::Void EnterOper(System::Object^ sender, System::EventArgs^ e) {
-	
-	 
-	Button^ Btnoper = safe_cast<Button^>(sender);
-	FirstDigit = Double::Parse(txtBox->Text);
-	operators = Btnoper->Text;
-	
-	List = List + FirstDigit.ToString() + operators + " ";
-	labelRes->Text = List;
-	txtBox->Text = "";
-	
-
-}
-private: System::Void btnequal_Click(System::Object^ sender, System::EventArgs^ e) {
-	int  index_=0;
-	String^ temp;
-	char* ptr = 0;;
-	Button^ Btnoper = safe_cast<Button^>(sender);
-	SecondDigit = Double::Parse(txtBox->Text);
-	FirstDigit = 0;
-
-	while(1)
-	{
-		
-		index_ = List->IndexOf(' ');
-		if (index_ == -1)
-			break;
-		
-		temp= List->Substring(0, index_-1);
-		try {
-			FirstDigit = Double::Parse(temp);
-		}
-		catch (...)
+	private: System::Void EnterNumber(System::Object^ sender, System::EventArgs^ e) {
+		Button^ Number = safe_cast<Button^>(sender);
+		if (txtBox->Text == "0")
 		{
-			List = List->Substring(index_ - 1, List->Length - 1);
-			continue;
+			txtBox->Text = Number->Text;
 		}
+		else
+		{
+			txtBox->Text = txtBox->Text + Number->Text;
+		}
+	}
+	private: System::Void textBox1_TextChanged(System::Object^ sender, System::EventArgs^ e) {
+	}
+	private: System::Void button17_Click(System::Object^ sender, System::EventArgs^ e) {
+
+		if (!txtBox->Text->Contains("."))
+		{
+			txtBox->Text = txtBox->Text + ".";
+		}
+	}
+	private: System::Void EnterOper(System::Object^ sender, System::EventArgs^ e) {
+		Button^ Btnoper = safe_cast<Button^>(sender);
+		FirstDigit = Double::Parse(txtBox->Text);
+		txtBox->Text = "\n";
+		operators = Btnoper->Text;
+
+	}
+	private: System::Void btnequal_Click(System::Object^ sender, System::EventArgs^ e) {
+		Button^ Btnoper = safe_cast<Button^>(sender);
+		SecondDigit = Double::Parse(txtBox->Text);
 		if (operators == "+")
-			{
-				Result += FirstDigit;
-			}
-			else if (operators == "-")
-			{
-				Result -= FirstDigit;
-			}
-			else if (operators == "*")
-			{
-			if (flag == false)
-			{
-				Result = 1;
-				flag = true;
-			}
-				Result *= FirstDigit;
-			}
-			else if (operators == "/")
-			{
-				Result /= FirstDigit;
-			}
-		operators = List->Substring(index_ - 1, 1);
-	List = List->Substring(index_+1 , (List->Length)- index_ -1);
-	}
-
-	if (operators == "+")
-	{
-		Result += SecondDigit;
-	}
-	else if (operators == "-")
-	{
-		Result -= SecondDigit;
-	}
-	else if (operators == "*")
-	{
-		if (flag == false)
 		{
-			Result = 1;
-			flag = true;
+			Result = FirstDigit + SecondDigit;
 		}
-		Result *= SecondDigit;
+		else if (operators == "-")
+		{
+			Result = FirstDigit - SecondDigit;
+		}
+		else if (operators == "*")
+		{
+			Result = FirstDigit * SecondDigit;
+		}
+		else if (operators == "/")
+		{
+			Result = FirstDigit + SecondDigit;
+		}
+		txtBox->Text = Result.ToString();
 	}
-	else if (operators == "/")
-	{
-		Result /= SecondDigit;
+	private: System::Void btnclear_Click(System::Object^ sender, System::EventArgs^ e) {
+		txtBox->Text = "0";
 	}
-		 
-	
-	labelRes->Text = Result.ToString();
-	if (flag == true)
-	{
-		Result = 0;
-		flag = false;
+	private: System::Void button3_Click(System::Object^ sender, System::EventArgs^ e) {
+		txtBox->Text = "0";
 	}
-	
-}
-private: System::Void btnclear_Click(System::Object^ sender, System::EventArgs^ e) {
-	txtBox->Text = "0";
-	labelRes->Text = "";
-	List = "0+ ";
-	Result = 0;
-	FirstDigit = 0;
-	SecondDigit = 0;
-}
-private: System::Void button3_Click(System::Object^ sender, System::EventArgs^ e) {
-	txtBox->Text = "0";
-	labelRes->Text = "";
-	List = "0+ ";
-	Result = 0;
-	FirstDigit = 0;
-	SecondDigit = 0;
-}
-private: System::Void btnspace_Click(System::Object^ sender, System::EventArgs^ e) {
-	if (txtBox->Text->Length > 0)
-	{
-		txtBox->Text = txtBox->Text->Remove(txtBox->Text->Length - 1, 1);
-	}
+	private: System::Void btnspace_Click(System::Object^ sender, System::EventArgs^ e) {
+		if (txtBox->Text->Length > 0)
+		{
+			txtBox->Text = txtBox->Text->Remove(txtBox->Text->Length - 1, 1);
+		}
 
-}
-private: System::Void result(System::Object^ sender, System::EventArgs^ e) {
-
-}
-private: System::Void labelRes_Click(System::Object^ sender, System::EventArgs^ e) {
-	
-}
-
-};
+	}
+	};
 }
 
 
